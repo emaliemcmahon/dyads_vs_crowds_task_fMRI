@@ -1,25 +1,24 @@
 function dyads_v_crowds(subjName, run_number, task)
 % Edited by Emalie McMahon June 20, 2025
+% Updated: Session/BIDS run handling moved to write_event_files (post-save, per-task)
 
 %% Experiment setup
 if nargin < 1
     subjName = 77;
     run_number = [];
-    task = 'sentences';
-    debug = 0;
+    task = 'videos';
+    debug = 1;
 else
     debug = 0;
 end
 
 % make output directories
 curr = pwd;
-% task_type = 'dyads';
 caption_file = fullfile(curr, 'sentence_captions.csv');
 topout = fullfile(curr, 'data', ['sub-',sprintf('%02d', subjName)]);
 matout = fullfile(topout, 'matfiles');
 timingout = fullfile(topout, 'timingfiles');
 runfiles = fullfile(topout,'runfiles');
-
 
 if ~exist(topout, 'dir')
     s=sprintf('Run files do not exist of subject %g. Make run files before continuing.', subjName);
@@ -27,19 +26,18 @@ if ~exist(topout, 'dir')
     throw(ME);
 end
 
-if ~exist(matout); mkdir(matout); end
-if ~exist(timingout); mkdir(timingout); end
+if ~exist(matout, 'dir'); mkdir(matout); end
+if ~exist(timingout, 'dir'); mkdir(timingout); end
 
 if isempty(run_number)
-    % If the run_number is not assigned, find the last run and
-    % increment by 1.
+    % If the run_number is not assigned, find the last run and increment by 1.
     files = dir(fullfile(timingout, [task, '*.csv']));
     if ~isempty(files)
         runs = [];
         for i=1:length(files)
             f = strsplit(files(i).name, '_');
             f = strsplit(f{1},'-');
-            runs(i) = str2num(f{end});
+            runs(i) = str2double(f{end});
         end
         run_number = max(runs) + 1;
     else
@@ -92,7 +90,9 @@ ftoread = fullfile(runfiles,[task, '-',sprintf('%02d', run_number),'.csv']);
 T = readtable(ftoread);
 n_trials = height(T);
 
-captions = readtable(caption_file);
+opts = detectImportOptions(caption_file);   % detect all available columns
+opts.SelectedVariableNames = {'video_name','caption','condition'}; % pick only the columns you need
+captions = readtable(caption_file, opts);
 T = join(T, captions);
 
 %% Make stimulus presentation table
@@ -131,8 +131,7 @@ total_sentence_duration = n_sentence * sentence_duration;
 total_isi = start_wait_duration + ((n_video + n_sentence) * TR_duration) ...
     + (sum(T.added_TRs) * TR_duration);
 
-expected_duration_s = total_video_duration + total_sentence_duration + ...
-    total_isi;
+expected_duration_s = total_video_duration + total_sentence_duration + total_isi;
 expected_duration_min = round(expected_duration_s/60, 2);
 fprintf('Trials: %g\n', n_trials);
 fprintf('Total expected duration (s): %g\n', expected_duration_s);
@@ -202,7 +201,7 @@ if ~debug
         end
     end
 else
-    while still_loading
+    while still_loading  && strcmp(T.modality{1}, 'vision')
         movie(1) = Screen('OpenMovie', win, T.movie_path{1}, async, preloadsecs);
         if movie(1) > 0; still_loading = 0; end
     end
@@ -211,10 +210,8 @@ end
 %% Experiment loop
 try
     % experiment start time
-
     Screen('DrawLines', win, crossCoords, crossWidth, crossColor, [x0 y0]);
     experiment_start = Screen('Flip', win);
-
 
     while (GetSecs-experiment_start) < T.onset(1)
         while still_loading
@@ -240,7 +237,7 @@ try
             Screen('SetMovieTimeIndex', movie(itrial), 0);
             Screen('PlayMovie', movie(itrial), rate, 1, sound);
 
-            % Show the frist frame to get onset time
+            % Show the first frame to get onset time
             tex = Screen('GetMovieImage', win, movie(itrial), blocking);
             Screen('DrawTexture', win, tex, [], dispSize);
             trial_start = Screen('Flip', win);
@@ -336,8 +333,9 @@ try
     writetable(T, filename);
     ShowCursor;
     Screen('CloseAll');
-    write_event_files(subjName, run_number, T(1:end-1, :), task);
 
+    % Session + BIDS run handled (and printed) inside write_event_files:
+    write_event_files(subjName, run_number, T(1:end-1, :), task);
 
     %% Print participant performance
     false_alarms = sum(T.response(T.response_trial == 0) == 1);
@@ -348,11 +346,12 @@ try
     s=sprintf('Expected length was %g s. Actual length was %g s.', expected_duration_s, actual_duration);
     fprintf('\n%s\n\n ', WrapString(s));
 
-catch e
+catch e %#ok<NASGU>
     save(fullfile(matout,['task-', task, '_run-', sprintf('%02d', run_number) '_',curr_date,'.mat']));
     filename = fullfile(timingout,['task-', task, '_run-', sprintf('%02d', run_number), '_',curr_date,'.csv']);
     writetable(T, filename);
     ShowCursor;
     Screen('CloseAll');
+    % Even on error, write events + print session/run info:
     write_event_files(subjName, run_number, T(1:end-1, :), task);
 end
