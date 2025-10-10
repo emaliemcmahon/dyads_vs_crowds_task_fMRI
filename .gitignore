@@ -1,0 +1,8 @@
+.DS_Store
+.vscode/
+videos/
+large_videos/
+crowd_videos/
+data/
+optseq/*.par
+optseq/optseq2

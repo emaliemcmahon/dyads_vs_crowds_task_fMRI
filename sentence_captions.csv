@@ -1,0 +1,160 @@
+video_name,caption,word_count,condition,motion_rating,communication,interesting,physical,surprisal,nouns,verbs,adjectives,content_words
+vid_096.mp4,"A dad looks at his daughter and holds her hand, while she spins in a circle.",16,communication,3.8,0.827160494,0.65432099,0.950617284,4.647259140628147,4,3,0,7
+vid_112.mp4,A dad in the snow picks his son up onto his back and playfully starts to run.,17,communication,4.3,0.827160494,0.748538012,0.944444444,5.800587897837235,4,3,0,7
+vid_180.mp4,A man is talking to a woman as she places slices of bread into a plastic container.,17,communication,2.2,0.91111111,0.590643275,0.790123457,4.727296670634514,6,3,0,9
+vid_185.mp4,"A mom talks to her adult daughter, while the mom puts a pie into the oven.",16,communication,2.909090909,0.888888889,0.580246914,0.814814815,5.649555624476746,7,1,0,8
+vid_187.mp4,"A dad demonstrates to his daughter how to stir the batter, and they mix it up together.",17,communication,2.9,0.866666667,0.62962963,0.95959596,5.215868084766317,4,3,0,7
+vid_192.mp4,"A mom talks to her adult daughter in the kitchen, while the daughter chops bell peppers.",16,communication,2.363636364,0.9,0.576719577,0.767676768,5.563607059076009,8,1,0,9
+vid_198.mp4,"A woman talks to her husband, and she puts a pepper into the pan he is holding.",17,communication,2.818181818,0.866666667,0.611111111,0.847222222,5.611141636330923,4,3,1,8
+vid_200.mp4,A couple is talking while one chops herbs and the other stirs something in a pot.,16,communication,2.7,0.864197531,0.62962963,0.728395062,5.359513421635619,5,2,1,8
+vid_201.mp4,"Two students in a library talk to each other, while the girl flips through a book.",16,communication,2.1,0.91111111,0.349206349,0.666666667,4.823046117002471,5,1,1,7
+vid_202.mp4,"A delivery man talks to his customer, and he hands her a bag of food.",15,communication,3,0.868686869,0.535353535,0.575757576,4.807665624637158,6,1,0,7
+vid_204.mp4,A psychic shuffles her Tarot cards and chats while a man prepares to hear his fortune.,16,communication,2.1,0.913580247,0.538011696,0.577777778,6.572234189270351,5,3,1,9
+vid_213.mp4,"Two men talk to each other and shake hands, while one holds a rolled poster.",15,communication,3.4,0.888888889,0.5625,0.888888889,5.373927937494376,3,2,3,8
+vid_215.mp4,"Two women talk to each other, while they sit on a tennis court on a sunny day.",17,communication,1.7,0.827160494,0.456790124,0.765432099,4.420745456390041,5,2,1,8
+vid_216.mp4,"Two men in a library laugh together, and then they turn to look at a laptop together.",17,communication,2.2,0.913580247,0.578947368,0.877777778,5.551525440637282,4,2,2,8
+vid_220.mp4,"A businessman in a black suit lectures another man, and the second man listens dutifully.",15,communication,1.5,0.962962963,0.494444444,0.777777778,5.129785564462635,5,2,2,9
+vid_222.mp4,"Two men sit and talk outside on a park bench, and they are wearing surgical masks. ",16,communication,1.4,0.855555556,0.46031746,0.727272727,5.055435169766935,4,4,1,9
+vid_223.mp4,"A grandfather talks happily with his granddaughter, while they play chess at a dining room table. ",16,communication,2.9,0.92592593,0.701754386,0.9,5.694548419485522,7,1,0,8
+vid_224.mp4,"A lady in a coat aggressively berates her friend, and the friend listens sadly before turning away.",17,communication,2.5,0.913580247,0.511111111,0.676767677,6.169497196284662,5,3,0,8
+vid_229.mp4,"A dentist explains a treatment plan by pointing to an iPad screen, and the patient listens attentively.",17,communication,1.3,0.966666667,0.555555556,0.641975309,5.467003957,7,3,0,10
+vid_237.mp4,"A couple are talking on the side of the road, while the woman looks up the road.",17,communication,2.4,0.827160494,0.37037037,0.407407407,4.485095685470425,5,3,0,8
+vid_239.mp4,"A grumpy little girl holds a book in her lap, while her smiling friend reads it.",16,communication,2.1,0.87654321,0.53703704,0.87654321,5.131246461167259,4,4,2,10
+vid_245.mp4,"Two friends converse casually in sign language, while they are sitting in the living room.",15,communication,2.7,0.950617284,0.5,0.814814815,4.980198681116598,5,3,0,8
+vid_246.mp4,"Two men talk outside, and the older man gestures towards a large piece of machinery.",15,communication,2.9,0.92592593,0.403508772,0.711111111,5.187055042618276,5,2,2,9
+vid_250.mp4,A mother reads her daughter a bedtime story as her arm drapes around her daughter's shoulders.,16,communication,1.3,0.950617284,0.594771242,0.819444444,3.7939305354227306,7,1,1,9
+vid_251.mp4,"Two teenage girls talk and play cards, while they are sitting on a blue bed.",15,communication,2.3,0.878787879,0.484848485,0.78787879,5.707424909264462,5,2,2,9
+vid_252.mp4,"Two women in headscarves talk at a cafe table, and one points to something on her phone.",17,communication,2,0.833333333,0.52046784,0.80246914,4.695751612,6,1,1,8
+vid_253.mp4,"Two women talk and walk in an urban park, while they each wear a scarf and coat.",17,communication,3.1,0.919191919,0.424242424,0.818181818,5.956230459053208,6,1,1,8
+vid_325.mp4,"A girl argues with her older sister, and she shakes her arms up and down in anger.",17,communication,3.454545455,0.97777778,0.45614035,0.69135802,4.875857967,3,3,1,7
+vid_327.mp4,"A man and woman fight animatedly in sign language, while they are sitting on a couch.",16,communication,3.545454545,0.966666667,0.485380117,0.740740741,5.488557104888668,6,2,0,8
+vid_329.mp4,"A man and woman argue in a living room, and the woman looks around the room.",16,communication,2.916666667,1,0.438596491,0.69135802,4.222228260945428,6,2,0,8
+vid_332.mp4,"A middle aged couple chat, while they stroll down a cobbled street on a chilly day.",16,communication,3.090909091,0.944444444,0.339181287,0.827160494,5.511563175384268,4,1,4,9
+vid_333.mp4,"An elderly woman sits in a wheel chair, and a nurse hands her a massage ball.",16,communication,2.7,0.833333333,0.315789474,0.728395062,4.372288604048099,5,2,2,9
+vid_337.mp4,"Two men stand outside and argue, while one of the men squints against the sun.",15,communication,2.818181818,0.955555556,0.415204678,0.641975309,4.558071151131667,4,2,0,6
+vid_338.mp4,"An older couple in exercise clothes smile and chat, while they each stretch their arms.",15,communication,3.1,0.833333333,0.362573099,0.716049383,6.7012416127628445,6,1,1,8
+vid_339.mp4,"Two men with prosthetic legs talk to each other, while they walk down the street for exercise.",17,communication,3.1,0.855555556,0.321637427,0.716049383,4.772781932585135,6,1,1,8
+vid_340.mp4,"Two elderly women talk to each other happily, while they walk quickly down the road.",15,communication,3.3,0.944444444,0.315789474,0.740740741,5.508930487705247,3,2,2,7
+vid_001.mp4,A mom scrolls on her phone next to her teenage daughter who is on her phone.,16,independent,1,0.122222222,0.286549708,0.27160494,4.903495287819166,5,2,1,8
+vid_009.mp4,"An athletic woman uses a chest press machine, next to a man who is bench pressing.",16,independent,3.2,0.02020202,0.358585859,0.191919192,5.189861394987091,5,2,3,10
+vid_013.mp4,A woman taps hurriedly on her phone next to her boyfriend who looks at his iPad.,16,independent,2.5,0.197530864,0.314814815,0.172839506,5.363449055467208,4,2,1,7
+vid_015.mp4,"A man uses a chest fly machine, and a woman slowly jogs on a treadmill nearby.",16,independent,3.4,0.0617284,0.364197531,0.148148148,6.578189027933936,8,1,0,9
+vid_019.mp4,A man with a bun grabs a book off a library shelf nearby another library patron.,16,independent,3,0.111111111,0.433333333,0.313131313,7.054590689885314,6,1,1,8
+vid_020.mp4,A man stirs something in a mixing bowl in front of a woman who grabs a tissue.,17,independent,2.8,0.288888889,0.5,0.388888889,5.204477184479166,7,2,0,9
+vid_021.mp4,Two young people each write in their notebooks while they lie on a living room carpet.,16,independent,2.090909091,0.283950617,0.438596491,0.244444444,6.016593830223818,6,1,1,8
+vid_022.mp4,Two people in a library study diligently with their laptops as one writes on his notepad.,16,independent,1,0.111111111,0.240740741,0.185185185,5.963106273382881,4,1,1,6
+vid_025.mp4,A woman works out on an elliptical machine in front of a man also on an elliptical.,17,independent,3.2,0.02020202,0.277777778,0.363636364,4.166104198,5,1,1,7
+vid_028.mp4,A man searches diligently for a book at the library nearby another man browsing the shelves.,16,independent,2.7,0.172839506,0.288888889,0.2020202,6.516558961042021,4,2,2,8
+vid_030.mp4,A girl dabs paint on her paper next to her brother who is focused on his painting.,17,independent,1.3,0.07777778,0.421052632,0.308641975,5.969373708045021,6,2,0,8
+vid_034.mp4,"A woman checks on plants in a greenhouse, while a man carries a plastic tray of plants.",17,independent,2.9,0.03333333,0.375661376,0.111111111,5.083135869113482,6,2,1,9
+vid_036.mp4,"Two yound sisters sit and color with crayons, and they each focus on their own drawing. ",16,independent,1.7,0.166666667,0.415204678,0.34567901,6.531607911636082,6,1,1,8
+vid_037.mp4,A woman cleans a counter in a restaurant kitchen while a man flips something on the grill.,17,independent,2.7,0.185185185,0.358024691,0.259259259,5.4395042705905565,7,2,0,9
+vid_039.mp4,"One woman walks on a treadmill, and another woman wearing headphones steps onto a treadmill.",15,independent,2.8,0.09090909,0.404040404,0.222222222,4.916141757193017,6,2,0,8
+vid_043.mp4,A little girl whisks batter as her mom walks toward another part of the kitchen.,15,independent,2.2,0.191919192,0.368686869,0.161616162,6.625040467819648,7,0,1,8
+vid_047.mp4,"A toddler plays with a toy cake, while her twin pretends to drink out of a cup.",17,independent,2.8,0.333333333,0.567251462,0.333333333,5.7366762592429055,5,2,1,8
+vid_048.mp4,A man scrolls on his phone beside his girlfriend who is also on her phone.,15,independent,1.5,0.02469136,0.128654971,0.322222222,5.279571988,4,2,0,6
+vid_049.mp4,A man writes at a desk stacked with books as another man walks to a shelf.,16,independent,2.4,0.0617284,0.235294118,0.05555556,6.014437847402486,5,3,0,8
+vid_055.mp4,"A woman in a grocery store taps on an iPad, while an old woman shops behind her.",17,independent,2.2,0.09722222,0.263888889,0.166666667,4.847041277887659,7,1,1,9
+vid_057.mp4,"A little boy in a tent plays with a guitar, while his sister writes in her journal.",17,independent,3,0.242424242,0.388888889,0.171717172,5.008152294055806,5,2,1,8
+vid_063.mp4,"A little boy scribbles with a green colored pencil, and his brother reaches for scissors.",15,independent,2.5,0.133333333,0.492063492,0.212121212,5.611044765518052,5,2,2,9
+vid_069.mp4,"A man butchers a large fish carcass, while another man riffles through a plastic drawer.",15,independent,2.2,0.08641975,0.567901235,0.27160494,5.695135889137159,5,2,2,9
+vid_070.mp4,Two college students sit in the park under a tree as they each flip through their notebooks. ,17,independent,2,0.355555556,0.36842105,0.296296296,5.485596891362194,5,2,0,7
+vid_081.mp4,A tired woman in a gym drinks water beside a man putting a towel on his neck.,17,independent,2.7,0.24691358,0.339181287,0.222222222,6.107605898073992,6,1,2,9
+vid_084.mp4,"A distressed woman shakes something out of a box, and her partner sits on the counter nearby.",17,independent,2.3,0.05555556,0.358024691,0.06944444,5.709228512183036,8,0,1,9
+vid_085.mp4,"A man wearing headphones looks at his iPad, and his girlfriend reads a book beside him.",16,independent,2.090909091,0.222222222,0.374269006,0.277777778,5.026471119550547,7,3,0,10
+vid_136.mp4,"Two men in solo kayaks paddle toward the shore, while the water pushes them downstream.",15,independent,3.545454545,0.144444444,0.637426901,0.37037037,5.127300067587191,5,3,0,8
+vid_341.mp4,"A man shakes a protein shake in the gym, and a woman prepares to lift weights.",16,independent,3,0.02222222,0.198830409,0.02469136,5.105672218327058,5,3,1,9
+vid_342.mp4,"A man in a jean jacket walks quickly on a subway platform, and another man walks by.",17,independent,3.8,0.01111111,0.286549708,0.111111111,4.9098317343694555,8,1,0,9
+vid_343.mp4,Two women are seated back-to-back on the bus as one gazes out the window. ,16,independent,2.2,0,0.222222222,0.01234568,4.322734683958041,4,3,0,7
+vid_344.mp4,"A strong woman does a push-up, and a man in the background throws a medicine ball.",17,independent,3.7,0.03333333,0.380116959,0.03703704,5.2085799885845265,6,2,1,9
+vid_345.mp4,"A woman soldier does a pushup, and a man soldier moves a weight plate overhead.",15,independent,3.363636364,0.04444444,0.32748538,0.111111111,5.776884394440315,7,2,1,10
+vid_347.mp4,"A man and woman sit together on the bus, and the woman scrolls on her phone. ",16,independent,2.2,0.06666667,0.257309942,0.185185185,4.655178212524101,5,2,0,7
+vid_349.mp4,A woman in blue leggings runs on a treadmill beside a man who is also running.,16,independent,4.090909091,0.06666667,0.280701754,0.296296296,4.578336324,4,2,2,8
+vid_350.mp4,A woman gazes out a bus window near an old man also looking out the window.,16,independent,2.909090909,0,0.309941521,0.03703704,4.960710361,5,2,1,8
+vid_086.mp4,Two men stand on a suspended platform as they let out the rope to lower it.,16,joint,3.4,0.244444444,0.492063492,0.818181818,5.354137280579678,4,2,2,8
+vid_088.mp4,Two men carry an upside-down dead pig on a bamboo pole while heading to barbecue it.,17,joint,3.8,0.266666667,0.596491228,0.92592593,6.350952161944717,4,3,3,10
+vid_091.mp4,A woman uses a cosmetic pencil on another woman's eyebrows while the other closes her eyes.,16,joint,1.5,0.444444444,0.487654321,0.765432099,5.875521518,4,3,2,9
+vid_093.mp4,"A couple in sparkly outfits dance together side-by-side, and the woman is smiling.",15,joint,3.7,0.493827161,0.635802469,0.827160494,5.238765882489748,5,1,2,8
+vid_094.mp4,A couple wearing Santa hats dance facing each other as the woman prepares to spin around.,16,joint,3.2,0.333333333,0.619047619,0.878787879,6.784311212784119,4,5,2,11
+vid_100.mp4,A father wraps a bandage around his son's foot while the son sits on a tree stump.,17,joint,2,0.488888889,0.53968254,0.838383838,4.576890768116569,6,2,1,9
+vid_108.mp4,A couple hits a volleyball back and forth while the wind blows the leaves behind them.,16,joint,3.6,0.432098765,0.660493827,0.87654321,5.258887903601922,6,2,0,8
+vid_111.mp4,"A woman demonstrates a stretch, standing with open arms and legs, and another woman follows her lead.",17,joint,2.9,0.3,0.529100529,0.717171717,5.743266386060499,6,2,2,10
+vid_115.mp4,A little girl playfully runs after a boy as he smiles and runs behind a chair.,16,joint,3.6,0.444444444,0.567251462,0.765432099,5.531320570278858,3,3,1,7
+vid_121.mp4,A man laces up a boxing glove on the other man's hand as the other man watches.,17,joint,2.1,0.355555556,0.538011696,0.716049383,5.026364655959304,6,1,3,10
+vid_123.mp4,"A man deadlifts and then presses a weight over his head, while another man matches his movements.",17,joint,3.1,0.234567901,0.567901235,0.65432099,4.951938511071505,6,2,0,8
+vid_127.mp4,A ballroom dancer leaps towards her dance partner as he lifts her to his shoulder.,15,joint,3.9,0.474747475,0.8030303,0.858585859,5.140642304,5,2,0,7
+vid_132.mp4,"A woman puts makeup on a man's eyebrows, and her face is painted like a clown.",16,joint,1.6,0.177777778,0.486772487,0.777777778,5.055492051120627,6,3,0,9
+vid_139.mp4,A ballerina extends her arms and legs in a ballet move as her partner lifts her gracefully.,17,joint,3.4,0.433333333,0.730994152,0.913580247,4.611076559460842,7,2,0,9
+vid_141.mp4,Two women turn around rhythmically in a performance while they wear ceremonial red and gold dresses.,16,joint,3.1,0.358024691,0.614379085,0.736111111,7.250133818804251,4,2,2,8
+vid_148.mp4,"Two little girls dance together, while the taller of the two girls twirls around merrily.",15,joint,3.8,0.493827161,0.594771242,0.833333333,4.520221896762634,6,1,1,8
+vid_154.mp4,A man steadies a red punching bag as a woman punches the bag with quick jabs.,16,joint,3.6,0.41975309,0.532163743,0.788888889,5.885823973475514,6,2,2,10
+vid_155.mp4,A boxer attempts to punch another boxer as the second boxer skillfully ducks down to dodge.,16,joint,3.5,0.122222222,0.560846561,0.707070707,5.649009171565592,3,4,1,8
+vid_156.mp4,One boxer punches another boxer as the second boxer protects his head with gloved hands.,15,joint,3.4,0.358024691,0.52046784,0.744444444,5.576803751985331,5,2,2,9
+vid_157.mp4,"A ballet teacher sways her arms from side to side, and a little girl follows her lead.",17,joint,3.2,0.481481482,0.592592593,0.888888889,4.822049534002069,6,3,1,10
+vid_163.mp4,"At an indoor tennis court, a woman serves the ball, and then a man returns the serve.",17,joint,2.5,0.244444444,0.428571429,0.636363636,4.285068773646374,5,3,1,9
+vid_173.mp4,A dancer spins elegantly into the open arms of her partner as he embraces her.,15,joint,3.7,0.407407407,0.660818714,0.944444444,4.913684019612235,4,2,1,7
+vid_178.mp4,"A woman is playfully chasing a man in a field, and he is holding a watering can.",17,joint,4.7,0.456790124,0.493827161,0.65432099,4.620706850067058,5,4,0,9
+vid_351.mp4,"A young mom sits and nurses her baby boy, and she covers his head with a blanket.",17,joint,2.454545455,0.07777778,0.339181287,0.80246914,5.095679271145104,6,2,1,9
+vid_353.mp4,"A woman with blond hair chews gum and braids a man's hair, while he smokes a cigarette.",17,joint,2.1,0.1,0.350877193,0.679012346,4.357099655220425,8,2,0,10
+vid_354.mp4,"Two young kids sort cards with numbers and mathematical operations, and the boy picks one up.",16,joint,2.6,0.333333333,0.374269006,0.740740741,7.022941574378526,7,1,2,10
+vid_355.mp4,"A couple plays chess on a blanket in the park, and the man places a piece down.",17,joint,2.75,0.311111111,0.397660819,0.827160494,5.551806344912032,7,2,0,9
+vid_356.mp4,"A newborn baby squirms in the bathtub, while his dad rinses suds off his arm.",15,joint,3.454545455,0.04444444,0.385964912,0.604938272,4.761879773649026,5,2,1,8
+vid_357.mp4,"A dad offers a baby a bottle, and the baby starts to suck on it.",15,joint,2.2,0.166666667,0.356725146,0.790123457,4.421120825969138,5,3,0,8
+vid_358.mp4,"A woman tattoos a man's arm, while he drinks coffee from a paper takeout cup.",15,joint,2.3,0.255555556,0.444444444,0.604938272,5.945159238366086,7,2,0,9
+vid_359.mp4,"A mom holds baby food in a spoon, and the baby sits up to take a bite.",17,joint,2.3,0.122222222,0.36842105,0.827160494,5.275324026557634,5,3,0,8
+vid_362.mp4,"A mom in a green dress feeds her toddler daughter, and the girl looks around the room.",17,joint,2.4,0.166666667,0.333333333,0.777777778,5.345560287558722,6,2,1,9
+vid_363.mp4,"A woman lies face down on a massage table, while a masseuse expertly massages her scalp.",16,joint,2.833333333,0.1,0.374269006,0.62962963,3.6052217865804117,5,3,0,8
+vid_364.mp4,"A couple in a park perform Tai Chi moves in unison, while the wind blows gently.",16,joint,2.909090909,0.08888889,0.374269006,0.703703704,6.240102872,8,1,1,10
+vid_367.mp4,"A woman lies on her back on a table outside, while a masseuse massages her hand.",16,joint,2.4,0.177777778,0.403508772,0.641975309,4.409010999,4,2,1,7
+vid_369.mp4,"A baby sucks on her thumb, while her mom dries the baby's head with a towel.",16,joint,2.636363636,0.144444444,0.39181287,0.65432099,4.166784485,5,2,1,8
+crowd_005.mp4,"A group of women play rec-league basketball, and the team in black uniforms has possession.",16,crowd,,,,,6.305518942686351,6,2,2,10
+crowd_006.mp4,"A group of performance dancers lean down, and then they stand and raise their arms.",15,crowd,,,,,6.329858756,5,3,0,8
+crowd_007.mp4,"Several singers stand on a stage, and the lead singer raises his hand during the chorus.",16,crowd,,,,,4.748962230914776,5,2,2,9
+crowd_008.mp4,An orchestra performs a symphony while they are seated in a public shopping mall.,14,crowd,,,,,5.4391135216464415,4,2,2,8
+crowd_009.mp4,"Five children dance together at school, and one little boy has a large lollipop.",14,crowd,,,,,5.345076316,5,1,2,8
+crowd_010.mp4,"An amateur dance class practices in a public square, and one lady demonstrates her new skills.",16,crowd,,,,,6.619461020271926,6,1,3,10
+crowd_011.mp4,"Many women in colorful dresses dance outside, and there is a large building in the background.",16,crowd,,,,,5.4607435683089935,6,1,3,10
+crowd_012.mp4,"A businessman in a suit finishes a presentation, and his large audience claps for him.",15,crowd,,,,,5.414732134135919,6,1,1,8
+crowd_013.mp4,A crowd jumps in time to the music as they are illuminated by a large yellow light.,17,crowd,,,,,5.280241061,5,2,2,9
+crowd_014.mp4,"Two basketball teams play on the court, and a man on the sidelines wears a Santa hat.",17,crowd,,,,,4.272454730830298,7,2,0,9
+crowd_015.mp4,"A group of cellists play expertly frontstage, and the bassists play in the rear.",14,crowd,,,,,6.943163055809189,4,3,0,7
+crowd_016.mp4,A youth soccer team puts their hands together in a huddle as they prepare to start playing.,17,crowd,,,,,4.85500011,6,3,0,9
+crowd_017.mp4,"A group of friends stands together, and they anxiously watch a game at a sports bar.",16,crowd,,,,,5.0279108428472945,7,1,0,8
+crowd_018.mp4,A crowd at a soccer stadium chants in support of their team as they pump their fists.,17,crowd,,,,,5.114647600091815,7,1,0,8
+crowd_019.mp4,"An older man dances in a park, and a crowd gathers to watch his performance.",15,crowd,,,,,4.349789569723408,6,1,1,8
+vid_260.mp4,Coca-cola bubbles vigorously as it is poured haphazardly into a barrel-shaped glass mug. ,15,object,,,,,5.714310815987952,3,2,2,7
+vid_261.mp4,Pool balls roll on a green felt table after being hit by the cue ball. ,15,object,,,,,6.774774498810012,6,3,1,10
+vid_262.mp4,"Water runs from the tap into a pot containing eggs, and the water overflows into the sink. ",17,object,,,,,5.042348740251258,7,2,0,9
+vid_263.mp4,A garden path is pelted with marbled-size hail as leaves blow from the bushes. ,15,object,,,,,7.4351195132241665,4,2,2,8
+vid_265.mp4,"A conical spinning top turns on the table, and it rocks precariously from side-to-side. ",16,object,,,,,5.142500095123346,4,2,1,7
+vid_267.mp4,A conveyor belt shuffles hundreds of wooden rings and tips them down a metal chute. ,15,object,,,,,5.899117581729733,6,2,1,9
+vid_268.mp4,A destroyed car slams into another car as smoke rises from both of their engines. ,15,object,,,,,6.450352694540246,5,1,1,7
+vid_275.mp4,Wooden debris from a destroyed home are carried by frothing waves and deposited on a pebbled beach. ,17,object,,,,,6.519915691471013,4,5,2,11
+vid_277.mp4,Globs of pink ground meat ooze from an industrial grinder and fall into a metal basin below.,17,object,,,,,4.897526076729362,10,0,1,11
+vid_281.mp4,"A honey dipper spins slowly through the viscous liquid, and the honey's surface gleams tantalizingly.",15,object,,,,,5.504250545,6,2,1,9
+vid_283.mp4,"A rainbow kite soars in the cloudless sky as its rainbow, ribbons tails twist in the breeze.",17,object,,,,,6.081046190369375,10,0,0,10
+vid_288.mp4,An industrial laser cuts ovals from a metal pipe as hot sparks are sent flying. ,15,object,,,,,7.252392268072954,7,2,2,11
+vid_289.mp4,"The wind spins colorful paper windmills on strings, and large paper lanterns sway to and fro. ",16,object,,,,,6.338533323216358,5,3,2,10
+vid_290.mp4,"Colorful balloons are strung together in the water, and they bob with the gentle waves. ",15,object,,,,,5.977180337700101,3,2,3,8
+vid_291.mp4,Ice cream cones move on a conveyor belt as they are filled with thick vanilla ice cream. ,17,object,,,,,4.106869376,8,3,1,12
+vid_292.mp4,"A lava pool churns and heaves, and its molten surface swells in waves of glowing orange.",16,object,,,,,5.579320936292133,7,1,2,10
+vid_293.mp4,"A manufacturing bottleneck piles up hundreds of glass vials, and they tremble together in a red mass.",17,object,,,,,7.282496721758186,6,2,1,9
+vid_294.mp4,"A metal ball on a string hits other balls, and the furthest ball swings away. ",15,object,,,,,5.792013662898889,6,2,2,10
+vid_295.mp4,Shiny metal machine parts jiggle and fall into an industrial hopper as the hopper spins slowly. ,16,object,,,,,6.1535960712295665,7,1,3,11
+vid_296.mp4,A bowling ball rolls down an alley and crashes into the pins sending them flying. ,15,object,,,,,5.756332890844231,5,3,0,8
+vid_299.mp4,One domino tips causing a cascade of other dominos arranged in a semi-circle to fall down. ,17,object,,,,,6.004962323319772,5,4,1,10
+vid_303.mp4,"Golden beads are dropped into a glass, and they bounce as they hit the bottom.",15,object,,,,,5.196790699111679,3,4,1,8
+vid_304.mp4,"A black felt top hat falls to the floor, and it rocks as it comes to rest. ",17,object,,,,,5.1654924528356805,4,4,1,9
+vid_306.mp4,A casino roulette wheel spins as a small plastic ball bounces across the different numbers. ,15,object,,,,,6.251185504380465,8,0,2,10
+vid_307.mp4,"Dice roll across a casino craps table, and they bounce vigorously to determine the winner.",15,object,,,,,6.593018775987887,6,2,0,8
+vid_308.mp4,"A remote-controlled helicopter takes flight, kicking up dust as it lifts off from the ground.",16,object,,,,,4.2126252357478755,2,3,1,6
+vid_309.mp4,"A metal dart flies at the target, and it sticks into the board near the center. ",16,object,,,,,6.010122616147688,5,1,1,7
+vid_310.mp4,"A golf club hits a ball, and the ball falls into the hole on the putting green.",17,object,,,,,4.053923395960203,6,3,0,9
+vid_311.mp4,A chopped tree falls and bounces as it comes to rest on the forest floor. ,15,object,,,,,5.637761366608328,4,2,2,8
+vid_312.mp4,"A stone drops into a puddle, causing a splash and ripples across the water surface.",15,object,,,,,4.229987696057677,6,2,0,8
+vid_313.mp4,A Jeep begins to descend a ramp and seems to be precariously perched on the precipice.,16,object,,,,,5.101904320531189,3,5,0,8
+vid_314.mp4,"A load of laundry tumbles around in a front-load washing machine, and the clothes are wet.",17,object,,,,,4.915790691176582,5,1,3,9
+vid_315.mp4,"A car is covered in thick snow, and then the windshield wipers fling some of it off.",17,object,,,,,4.669045761016365,4,4,1,9
+vid_316.mp4,"There is a heavy storm, and a tree’s leaves rustle as they are pelted by rain.",16,object,,,,,5.7299590080615745,3,4,1,8
+vid_317.mp4,A car is not getting traction on the snow and kicks up chunks of gray slush.,16,object,,,,,5.694453057774413,5,3,1,9
+vid_318.mp4,A plow is clearing the road after a snowfall and is shifting a large pile of snow.,17,object,,,,,5.126759984265224,5,4,1,10
