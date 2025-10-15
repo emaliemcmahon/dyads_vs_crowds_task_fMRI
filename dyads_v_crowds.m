@@ -8,10 +8,10 @@ if nargin < 1
     run_number = [];
     task = 'sentences';
     debug = 1;
-    with_Eyelink = 1;
+    with_Eyelink = 0;
 else
     debug = 0;
-    with_Eyelink = 1;
+    with_Eyelink = 0;
 end
 
 % make output directories
@@ -156,7 +156,7 @@ commandwindow;
 HideCursor;
 
 % Uncomment for debugging with transparent screen
-PsychDebugWindowConfiguration;
+% PsychDebugWindowConfiguration;
 
 %Suppress frogs
 Screen('Preference','VisualDebugLevel', 0);
@@ -249,23 +249,6 @@ if with_Eyelink
         error('Could not open EDF file "%s" (must be <=8 chars).', edfFile);
     end
 
-    % DRIFT CORRECTION ONLY for this run (center of screen)
-    % If Esc is pressed (returns -1), we do NOT auto-calibrate here.
-    % center-of-screen DC; draw target; DO NOT allow jump to setup on Esc
-    % quick prompt
-    DrawFormattedText(win,'Press S to skip drift correction\n(any key to proceed)','center','center',[255 255 255]);
-    Screen('Flip',win);
-    KbReleaseWait;                           % optional: clear previous key state
-    [~, keyCode] = KbWait([], 2);            % <-- 2nd output is the keyCode vector
-
-    % simplest: 's' (shift doesn’t matter on PTB)
-    if keyCode(KbName('s'))
-        rc = -1;  % pretend DC was skipped
-    else
-        rc = EyelinkDoDriftCorrection(el, [], [], 1, 0);
-    end
-
-
     Eyelink('StartRecording');
     Eyelink('Message','REC_START');
     WaitSecs(0.1);
@@ -315,7 +298,7 @@ try
         end
     end
 
-    for itrial = 1:5%n_trials
+    for itrial = 1:n_trials
         still_loading = 1;
         response = 0;
         if strcmp(T.modality{itrial}, 'vision')

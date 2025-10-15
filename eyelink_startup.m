@@ -75,10 +75,20 @@ if rc ~= 0
 end
 
 % --- Optional one-time full calibration/validation ---
+% --- Optional one-time full calibration/validation ---
 if doCalibration
+    % Show instructions
+    DrawFormattedText(win, 'Press any key to start EyeLink calibration...', ...
+                      'center', 'center', fg);
+    Screen('Flip', win);
+
+    % Wait for a key press
+    KbWait([], 2); % waits for any key down, ignores held keys
+
     fprintf('[EyeLink] Running full calibration...\n');
     EyelinkDoTrackerSetup(el);
 end
+
 
 % --- Confirm link & stash shared state for other scripts ---
 [~, trackerName] = Eyelink('GetTrackerVersion');
