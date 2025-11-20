@@ -8,10 +8,10 @@ if nargin < 1
     run_number = [];
     task = 'sentences';
     debug = 1;
-    with_Eyelink = 0;
+    with_Eyelink = 1;
 else
     debug = 0;
-    with_Eyelink = 0;
+    with_Eyelink = 1;
 end
 
 % make output directories
@@ -442,11 +442,10 @@ try
             warning('Problem receiving EDF ''%s''.\n', edfFile);
         end
 
-         edffiles = fullfile(edffiles, [edfFile, '_', curr_date, '.edf']);
+         edf_file_name = fullfile(edffiles, [edfFile, '_', curr_date, '.edf']);
         try
-            movefile([edfFile '.edf'], edffiles);
+            movefile([edfFile '.edf'], edf_file_name);
             fprintf('Moved EDF to %s\n', dest);
-            delete(edfFile);
         catch
             warning('Could not move EDF file to %s', dest);
         end

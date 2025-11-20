@@ -168,7 +168,7 @@ def getArgs():
                         default='optseq')
     parser.add_argument('--video_csv', type=str, help='list of videos and conditions',
                         default='sentence_captions.csv')
-    parser.add_argument('--n_repeats', '-n', type=int, default=8,
+    parser.add_argument('--n_repeats', '-n', type=int, default=5,
                         help='number of unique video repetitions in experiment. \n Number of runs will be 5 * n_repeats')
     parser.add_argument('--top_out', '-o', type=str, help='directory to save the run files', 
                         default='data')
