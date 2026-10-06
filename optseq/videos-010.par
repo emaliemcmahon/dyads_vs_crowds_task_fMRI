@@ -1,0 +1,106 @@
+  0.0000    2    2.000   1.0000    communication_vision
+  2.0000    0    6.000   1.0000          NULL 
+  8.0000    3    2.000   1.0000    joint_vision
+ 10.0000    0    2.000   1.0000          NULL 
+ 12.0000    2    2.000   1.0000    communication_vision
+ 14.0000    0    2.000   1.0000          NULL 
+ 16.0000    3    2.000   1.0000    joint_vision
+ 18.0000    0    2.000   1.0000          NULL 
+ 20.0000    5    2.000   1.0000    object_vision
+ 22.0000    0    4.000   1.0000          NULL 
+ 26.0000    1    2.000   1.0000    crowd_vision
+ 28.0000    0    2.000   1.0000          NULL 
+ 30.0000    3    2.000   1.0000    joint_vision
+ 32.0000    0    2.000   1.0000          NULL 
+ 34.0000    5    2.000   1.0000    object_vision
+ 36.0000    0    2.000   1.0000          NULL 
+ 38.0000    2    2.000   1.0000    communication_vision
+ 40.0000    0    2.000   1.0000          NULL 
+ 42.0000    4    2.000   1.0000    independent_vision
+ 44.0000    0    4.000   1.0000          NULL 
+ 48.0000    4    2.000   1.0000    independent_vision
+ 50.0000    0    2.000   1.0000          NULL 
+ 52.0000    4    2.000   1.0000    independent_vision
+ 54.0000    0    2.000   1.0000          NULL 
+ 56.0000    4    2.000   1.0000    independent_vision
+ 58.0000    0    2.000   1.0000          NULL 
+ 60.0000    2    2.000   1.0000    communication_vision
+ 62.0000    0    2.000   1.0000          NULL 
+ 64.0000    5    2.000   1.0000    object_vision
+ 66.0000    0    2.000   1.0000          NULL 
+ 68.0000    4    2.000   1.0000    independent_vision
+ 70.0000    0    4.000   1.0000          NULL 
+ 74.0000    3    2.000   1.0000    joint_vision
+ 76.0000    0    2.000   1.0000          NULL 
+ 78.0000    3    2.000   1.0000    joint_vision
+ 80.0000    0    4.000   1.0000          NULL 
+ 84.0000    2    2.000   1.0000    communication_vision
+ 86.0000    0    2.000   1.0000          NULL 
+ 88.0000    4    2.000   1.0000    independent_vision
+ 90.0000    0    2.000   1.0000          NULL 
+ 92.0000    1    2.000   1.0000    crowd_vision
+ 94.0000    0    6.000   1.0000          NULL 
+100.0000    4    2.000   1.0000    independent_vision
+102.0000    0    2.000   1.0000          NULL 
+104.0000    5    2.000   1.0000    object_vision
+106.0000    0    2.000   1.0000          NULL 
+108.0000    4    2.000   1.0000    independent_vision
+110.0000    0    2.000   1.0000          NULL 
+112.0000    1    2.000   1.0000    crowd_vision
+114.0000    0    2.000   1.0000          NULL 
+116.0000    1    2.000   1.0000    crowd_vision
+118.0000    0    2.000   1.0000          NULL 
+120.0000    2    2.000   1.0000    communication_vision
+122.0000    0    4.000   1.0000          NULL 
+126.0000    2    2.000   1.0000    communication_vision
+128.0000    0    4.000   1.0000          NULL 
+132.0000    5    2.000   1.0000    object_vision
+134.0000    0    2.000   1.0000          NULL 
+136.0000    3    2.000   1.0000    joint_vision
+138.0000    0    2.000   1.0000          NULL 
+140.0000    5    2.000   1.0000    object_vision
+142.0000    0    2.000   1.0000          NULL 
+144.0000    5    2.000   1.0000    object_vision
+146.0000    0    2.000   1.0000          NULL 
+148.0000    2    2.000   1.0000    communication_vision
+150.0000    0    4.000   1.0000          NULL 
+154.0000    5    2.000   1.0000    object_vision
+156.0000    0    2.000   1.0000          NULL 
+158.0000    3    2.000   1.0000    joint_vision
+160.0000    0    2.000   1.0000          NULL 
+162.0000    2    2.000   1.0000    communication_vision
+164.0000    0    2.000   1.0000          NULL 
+166.0000    3    2.000   1.0000    joint_vision
+168.0000    0    4.000   1.0000          NULL 
+172.0000    3    2.000   1.0000    joint_vision
+174.0000    0    4.000   1.0000          NULL 
+178.0000    5    2.000   1.0000    object_vision
+180.0000    0    2.000   1.0000          NULL 
+182.0000    2    2.000   1.0000    communication_vision
+184.0000    0    2.000   1.0000          NULL 
+186.0000    2    2.000   1.0000    communication_vision
+188.0000    0    2.000   1.0000          NULL 
+190.0000    4    2.000   1.0000    independent_vision
+192.0000    0    2.000   1.0000          NULL 
+194.0000    4    2.000   1.0000    independent_vision
+196.0000    0    2.000   1.0000          NULL 
+198.0000    5    2.000   1.0000    object_vision
+200.0000    0    2.000   1.0000          NULL 
+202.0000    4    2.000   1.0000    independent_vision
+204.0000    0    2.000   1.0000          NULL 
+206.0000    3    2.000   1.0000    joint_vision
+208.0000    0    2.000   1.0000          NULL 
+210.0000    5    2.000   1.0000    object_vision
+212.0000    0    2.000   1.0000          NULL 
+214.0000    2    2.000   1.0000    communication_vision
+216.0000    0    6.000   1.0000          NULL 
+222.0000    3    2.000   1.0000    joint_vision
+224.0000    0    2.000   1.0000          NULL 
+226.0000    1    2.000   1.0000    crowd_vision
+228.0000    0    2.000   1.0000          NULL 
+230.0000    5    2.000   1.0000    object_vision
+232.0000    0    2.000   1.0000          NULL 
+234.0000    3    2.000   1.0000    joint_vision
+236.0000    0    2.000   1.0000          NULL 
+238.0000    4    2.000   1.0000    independent_vision
+240.0000    0   12.000   1.0000          NULL 

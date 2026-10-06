@@ -3,6 +3,13 @@
 videos/
 large_videos/
 crowd_videos/
+# participant data is not pushed to the public repo; a local snapshot is
+# kept on the local-only branch data-snapshot. EDFs are too big for git.
 data/
-optseq/*.par
+*.edf
+data/**/edf/
+# unreadable stray folder owned by another user
+data/sub-12/sub-13/
 optseq/optseq2
+# local test copies
+sandbox/

@@ -1,0 +1,80 @@
+  0.0000    4    4.000   1.0000    independent_language
+  4.0000    0    2.000   1.0000          NULL 
+  6.0000    5    4.000   1.0000    object_language
+ 10.0000    0    2.000   1.0000          NULL 
+ 12.0000    2    4.000   1.0000    communication_language
+ 16.0000    0    2.000   1.0000          NULL 
+ 18.0000    2    4.000   1.0000    communication_language
+ 22.0000    0    2.000   1.0000          NULL 
+ 24.0000    2    4.000   1.0000    communication_language
+ 28.0000    0    4.000   1.0000          NULL 
+ 32.0000    5    4.000   1.0000    object_language
+ 36.0000    0    4.000   1.0000          NULL 
+ 40.0000    3    4.000   1.0000    joint_language
+ 44.0000    0    2.000   1.0000          NULL 
+ 46.0000    5    4.000   1.0000    object_language
+ 50.0000    0    8.000   1.0000          NULL 
+ 58.0000    3    4.000   1.0000    joint_language
+ 62.0000    0    2.000   1.0000          NULL 
+ 64.0000    2    4.000   1.0000    communication_language
+ 68.0000    0    2.000   1.0000          NULL 
+ 70.0000    3    4.000   1.0000    joint_language
+ 74.0000    0    8.000   1.0000          NULL 
+ 82.0000    2    4.000   1.0000    communication_language
+ 86.0000    0    2.000   1.0000          NULL 
+ 88.0000    3    4.000   1.0000    joint_language
+ 92.0000    0    4.000   1.0000          NULL 
+ 96.0000    3    4.000   1.0000    joint_language
+100.0000    0    2.000   1.0000          NULL 
+102.0000    3    4.000   1.0000    joint_language
+106.0000    0    4.000   1.0000          NULL 
+110.0000    4    4.000   1.0000    independent_language
+114.0000    0    2.000   1.0000          NULL 
+116.0000    2    4.000   1.0000    communication_language
+120.0000    0    2.000   1.0000          NULL 
+122.0000    2    4.000   1.0000    communication_language
+126.0000    0    8.000   1.0000          NULL 
+134.0000    1    4.000   1.0000    crowd_language
+138.0000    0    4.000   1.0000          NULL 
+142.0000    5    4.000   1.0000    object_language
+146.0000    0    2.000   1.0000          NULL 
+148.0000    1    4.000   1.0000    crowd_language
+152.0000    0    2.000   1.0000          NULL 
+154.0000    4    4.000   1.0000    independent_language
+158.0000    0    8.000   1.0000          NULL 
+166.0000    4    4.000   1.0000    independent_language
+170.0000    0    2.000   1.0000          NULL 
+172.0000    4    4.000   1.0000    independent_language
+176.0000    0    2.000   1.0000          NULL 
+178.0000    1    4.000   1.0000    crowd_language
+182.0000    0    2.000   1.0000          NULL 
+184.0000    3    4.000   1.0000    joint_language
+188.0000    0    2.000   1.0000          NULL 
+190.0000    4    4.000   1.0000    independent_language
+194.0000    0    2.000   1.0000          NULL 
+196.0000    3    4.000   1.0000    joint_language
+200.0000    0    8.000   1.0000          NULL 
+208.0000    5    4.000   1.0000    object_language
+212.0000    0    2.000   1.0000          NULL 
+214.0000    5    4.000   1.0000    object_language
+218.0000    0    2.000   1.0000          NULL 
+220.0000    2    4.000   1.0000    communication_language
+224.0000    0    8.000   1.0000          NULL 
+232.0000    5    4.000   1.0000    object_language
+236.0000    0    2.000   1.0000          NULL 
+238.0000    4    4.000   1.0000    independent_language
+242.0000    0    4.000   1.0000          NULL 
+246.0000    1    4.000   1.0000    crowd_language
+250.0000    0    4.000   1.0000          NULL 
+254.0000    2    4.000   1.0000    communication_language
+258.0000    0    2.000   1.0000          NULL 
+260.0000    4    4.000   1.0000    independent_language
+264.0000    0    2.000   1.0000          NULL 
+266.0000    3    4.000   1.0000    joint_language
+270.0000    0    4.000   1.0000          NULL 
+274.0000    5    4.000   1.0000    object_language
+278.0000    0    2.000   1.0000          NULL 
+280.0000    5    4.000   1.0000    object_language
+284.0000    0    2.000   1.0000          NULL 
+286.0000    4    4.000   1.0000    independent_language
+290.0000    0   16.000   1.0000          NULL 
