@@ -383,10 +383,6 @@ try
         check_keys(1, T, 1, keysToAccept, escapeKey, experiment_start);
     end
 
-   if debug
-       n_trials=2; 
-   end 
-
     for itrial = 1:n_trials
         still_loading = 1;
         response = 0;
