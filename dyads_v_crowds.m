@@ -1,8 +1,34 @@
 function dyads_v_crowds(subjName, run_number, task)
+% Runs one fMRI run of the dyads vs crowds task.
+%
+%   dyads_v_crowds(subjName)                      % usual call
+%   dyads_v_crowds(subjName, run_number)          % force a run number
+%   dyads_v_crowds(subjName, run_number, task)    % force run and task
+%   dyads_v_crowds(subjName, [], task)            % force the task only
+%
+% You only need to pass the subject number. Everything else is worked out
+% from the subject's saved data:
+%   task       : 'sentences' until 8 sentence runs have been finished,
+%                then 'videos' (sentences always come before videos).
+%   run_number : the run after the last saved run of that task. If the
+%                last run was stopped early, you are asked whether to
+%                re-run it or continue to the next one.
+%   session    : each date with saved data is a session (the third date
+%                is session 3). BIDS runs restart at 1 in each session.
+%
+% Run files are made automatically if a subject has none, and new
+% decorrelated video runs are made once at a returning participant's
+% first video run of session 3 or later (make_session3_runfiles).
+%
+% Press Esc to stop a run. The trials shown so far are saved with an
+% _incomplete suffix.
+%
 % Edited by Emalie McMahon June 20, 2025
+% Update by EM October 6, 2026
 % Updated: session, task run and BIDS run come from session_info and are passed to write_event_files
 %
 %% Experiment setup
+n_sentence_runs = 8;   % sentence runs each participant completes
 if nargin < 1
     subjName = 77;
     run_number = [];
@@ -10,6 +36,8 @@ if nargin < 1
     debug = 1;
     with_Eyelink = 0;
 else
+    if nargin < 2; run_number = []; end
+    if nargin < 3; task = ''; end
     debug = 0;
     with_Eyelink = 0;
 end
@@ -26,11 +54,29 @@ if ~exist(matout, 'dir'); mkdir(matout); end
 if ~exist(timingout, 'dir'); mkdir(timingout); end
 if ~exist(edffiles, 'dir'); mkdir(edffiles); end
 
+% Pick the task: sentences until n_sentence_runs are finished, then videos
+if isempty(task)
+    sent = session_info(topout, 'sentences');
+    if sent.n_finished < n_sentence_runs
+        task = 'sentences';
+    else
+        task = 'videos';
+    end
+    fprintf('Task: %s (%d of %d sentence runs finished).\n', task, ...
+        min(sent.n_finished, n_sentence_runs), n_sentence_runs);
+end
 
-% Make run files if they do not exist yet for this task
+
+% Make run files if they do not exist yet for this task. A new subject's
+% video runs are made once their sentence runs are done, ordered to be
+% uncorrelated with the sentence order they saw.
 if isempty(dir(fullfile(runfiles, [task, '-*.csv'])))
     fprintf('No %s run files for subject %g. Generating them now.\n', task, subjName);
-    assign_conditions(subjName, task, 'OutRoot', fullfile(curr, 'data'));
+    if strcmp(task, 'videos') && session_info(topout, 'sentences').n_finished > 0
+        make_session3_runfiles(subjName, 'DataRoot', fullfile(curr, 'data'));
+    else
+        assign_conditions(subjName, task, 'OutRoot', fullfile(curr, 'data'));
+    end
 end
 
 
@@ -41,17 +87,32 @@ session_number = sinfo.session;
 bids_run_number = sinfo.bids_run;
 if isempty(run_number)
     run_number = sinfo.run;
+    if sinfo.last_run_incomplete
+        % The last run was stopped early (Esc or error): re-run it or move on
+        answer = '';
+        while ~any(strcmpi(answer, {'r', 'c'}))
+            answer = strtrim(input(sprintf(['Run %d was stopped before it finished.\n', ...
+                'Type r to re-run run %d, or c to continue to run %d: '], ...
+                sinfo.last_run, sinfo.last_run, sinfo.run), 's'));
+        end
+        if strcmpi(answer, 'r')
+            run_number = sinfo.last_run;
+        end
+    end
+end
+
+% Returning participant (session 3+): make new video runs that are
+% decorrelated from what they already saw. Only done once per subject;
+% session3_qa_*.json marks that it has been done.
+if strcmp(task, 'videos') && session_number >= 3 && ...
+        isempty(dir(fullfile(runfiles, 'session3_qa_*.json')))
+    fprintf('Session %g for subject %g: making session 3 video run files.\n', session_number, subjName);
+    make_session3_runfiles(subjName, 'DataRoot', fullfile(curr, 'data'));
 end
 
 ftoread = fullfile(runfiles,[task, '-',sprintf('%02d', run_number),'.csv']);
 if ~exist(ftoread, 'file')
-    error(['No run file %s. All prepared %s runs may be done; for a returning ', ...
-        'participant make more with make_session3_runfiles(%g).'], ftoread, task, subjName);
-end
-if strcmp(task, 'videos') && session_number >= 3 && ...
-        isempty(dir(fullfile(runfiles, 'session3_qa_*.json')))
-    warning(['Session %g but make_session3_runfiles has not been run for subject %g. ', ...
-        'These run files were not decorrelated from the sentence order.'], session_number, subjName);
+    error('No run file %s. All prepared %s runs may be done.', ftoread, task);
 end
 
 s=sprintf('Subject number is %g. Session is %g. Run number is %g (BIDS run %g today). ', ...
@@ -94,6 +155,7 @@ start_wait_duration = start_TRs * TR_duration;
 KbName('UnifyKeyNames');
 triggerKey = {'+'};                                    % The value of the key the scanner sends to the presentation computer
 keysToAccept = KbName({'1','1!','2','2@','3','3#','B'}); % Which KbCheck keys to accept as a behavioral response
+escapeKey = KbName('ESCAPE');                          % Stops the run; data so far are saved as incomplete
 
 %% load video list
 T = readtable(ftoread);
@@ -264,6 +326,17 @@ if ~debug
         if any(strcmp(trig, triggerKey))
             break;
         end
+        if double(trig) == 27
+            % Esc before the trigger: nothing was presented, so nothing is saved
+            if with_Eyelink
+                Eyelink('StopRecording');
+                Eyelink('CloseFile');
+            end
+            ShowCursor;
+            Screen('CloseAll');
+            fprintf('\nRun %d stopped with Esc before the scanner trigger. Nothing was saved.\n', run_number);
+            return
+        end
 
         if still_loading && strcmp(T.modality{1}, 'vision')
             movie(1) = Screen('OpenMovie', win, T.movie_path{1}, async, preloadsecs);
@@ -297,6 +370,7 @@ try
                 still_loading = 0;
             end
         end
+        check_keys(1, T, 1, keysToAccept, escapeKey, experiment_start);
     end
 
    if debug
@@ -333,15 +407,7 @@ try
                 Screen('Flip', win);
                 Screen('Close', tex);
 
-                if ~response
-                    [~,response_time,keyCode]=KbCheck();
-                    button = intersect(keysToAccept, find(keyCode));
-                    if ~isempty(button)
-                        response = 1;
-                        T.response(itrial) = 1;
-                        T.response_time(itrial) = response_time - experiment_start;
-                    end
-                end
+                [response, T] = check_keys(response, T, itrial, keysToAccept, escapeKey, experiment_start);
                 frame_counter = frame_counter + 1;
             end
 
@@ -361,15 +427,7 @@ try
             end
 
             while GetSecs < (expected_trial_end-(1/frames_per_sec))
-                if ~response
-                    [~,response_time,keyCode]=KbCheck();
-                    button = intersect(keysToAccept, find(keyCode));
-                    if ~isempty(button)
-                        response = 1;
-                        T.response(itrial) = 1;
-                        T.response_time(itrial) = response_time - experiment_start;
-                    end
-                end
+                [response, T] = check_keys(response, T, itrial, keysToAccept, escapeKey, experiment_start);
             end
         end
 
@@ -399,15 +457,7 @@ try
                 end
             end
 
-            if ~response
-                [~,response_time,keyCode]=KbCheck();
-                button = intersect(keysToAccept, find(keyCode));
-                if ~isempty(button)
-                    response = 1;
-                    T.response(itrial) = 1;
-                    T.response_time(itrial) = response_time - experiment_start;
-                end
-            end
+            [response, T] = check_keys(response, T, itrial, keysToAccept, escapeKey, experiment_start);
         end
 
         %% Trial ending details
@@ -421,69 +471,86 @@ try
     end
 
     T.offset_time(itrial) = GetSecs() - experiment_start;
-    actual_duration = T.offset_time(itrial);
-    save(fullfile(matout,['task-', task, '_run-', sprintf('%02d', run_number) '_',curr_date,'.mat']));
-    filename = fullfile(timingout,['task-', task, '_run-', sprintf('%02d', run_number), '_',curr_date,'.csv']);
-    writetable(T, filename);
-    ShowCursor;
-    Screen('CloseAll');
+    run_completed = true;
+catch stop_error
+    % Esc (or an error) during the run: keep what was presented
+    run_completed = false;
+end
 
-    % Session + BIDS run handled (and printed) inside write_event_files:
-    write_event_files(subjName, run_number, T(1:end-1, :), task, session_number, bids_run_number);
+%% Save
+if run_completed
+    suffix = '';
+    presented = [true(n_trials, 1); false];          % not the duplicated last row
+    actual_duration = T.offset_time(n_trials);
+else
+    suffix = '_incomplete';
+    presented = [T.onset_time(1:end-1) > 0; false];  % trials that finished
+end
+save(fullfile(matout,['task-', task, '_run-', sprintf('%02d', run_number) '_',curr_date, suffix, '.mat']));
+filename = fullfile(timingout,['task-', task, '_run-', sprintf('%02d', run_number), '_',curr_date, suffix, '.csv']);
+writetable(T, filename);
+ShowCursor;
+Screen('CloseAll');
 
-    %% save eyelink and close (per-run EDF handling; keep link alive for next run)
-    if with_Eyelink
-        Eyelink('StopRecording');
-        Eyelink('Message','REC_END');
-        Eyelink('CloseFile');
+% Session + BIDS run are printed inside write_event_files
+write_event_files(subjName, run_number, T(presented, :), task, session_number, bids_run_number, run_completed);
 
-        try
-            fprintf('Receiving data file ''%s''\n', edfFile);
-            status = Eyelink('ReceiveFile', edfFile, [edfFile '.edf'], 1);
-            if status <= 0
-                warning('ReceiveFile returned %d. Check storage space/permissions.', status);
-            end
-        catch
-            warning('Problem receiving EDF ''%s''.\n', edfFile);
+%% save eyelink and close (per-run EDF handling; keep link alive for next run)
+if with_Eyelink
+    try Eyelink('StopRecording'); catch; end
+    Eyelink('Message','REC_END');
+    Eyelink('CloseFile');
+
+    try
+        fprintf('Receiving data file ''%s''\n', edfFile);
+        status = Eyelink('ReceiveFile', edfFile, [edfFile '.edf'], 1);
+        if status <= 0
+            warning('ReceiveFile returned %d. Check storage space/permissions.', status);
         end
-
-         edf_file_name = fullfile(edffiles, [edfFile, '_', curr_date, '.edf']);
-        try
-            movefile([edfFile '.edf'], edf_file_name);
-            fprintf('Moved EDF to %s\n', dest);
-        catch
-            warning('Could not move EDF file to %s', dest);
-        end
+    catch
+        warning('Problem receiving EDF ''%s''.\n', edfFile);
     end
 
-
-
-    %% Print participant performance
-    % Participants press when the stimulus is NOT a crowd (i.e., dyad trials).
-    % Score only the presented trials, not the duplicated final row.
-    trials = T(1:n_trials, :);
-    is_target = trials.response_trial == 0;
-    hits = sum(trials.response(is_target) == 1);
-    false_alarms = sum(trials.response(~is_target) == 1);
-    total_accuracy = mean(trials.response == is_target);
-    s=sprintf('%g hits out of %g dyad events. %g false alarms out of %g crowd events. Overall accuracy is %0.2f.', hits, sum(is_target), false_alarms, sum(~is_target), total_accuracy);
-    fprintf('\n\n\n%s\n',WrapString(s));
-    s=sprintf('Expected length was %g s. Actual length was %g s.', expected_duration_s, actual_duration);
-    fprintf('\n%s\n\n ', WrapString(s));
-
-catch e %#ok<NASGU>
-    save(fullfile(matout,['task-', task, '_run-', sprintf('%02d', run_number) '_',curr_date,'.mat']));
-    filename = fullfile(timingout,['task-', task, '_run-', sprintf('%02d', run_number), '_',curr_date,'.csv']);
-    writetable(T, filename);
-    ShowCursor;
-    Screen('CloseAll');
-    % Even on error, write events + print session/run info:
-    write_event_files(subjName, run_number, T(1:end-1, :), task, session_number, bids_run_number);
-
-    if with_Eyelink
-        try Eyelink('StopRecording'); catch e2; fprintf(e2); end
-        try Eyelink('CloseFile'); catch e2; fprintf(e2); end
-        try Eyelink('ReceiveFile', edfFile); catch e2; fprintf(e2); end
+    edf_file_name = fullfile(edffiles, [edfFile, '_', curr_date, suffix, '.edf']);
+    try
+        movefile([edfFile '.edf'], edf_file_name);
+        fprintf('Moved EDF to %s\n', edf_file_name);
+    catch
+        warning('Could not move EDF file to %s', edf_file_name);
     end
+end
 
+if ~run_completed
+    if strcmp(stop_error.identifier, 'dyads:escape')
+        fprintf(['\nRun %d stopped with Esc after %d of %d trials. The presented trials ', ...
+            'were saved as incomplete.\n'], run_number, sum(presented), n_trials);
+        return
+    end
+    rethrow(stop_error);
+end
+
+%% Print participant performance
+% Participants press when the stimulus is NOT a crowd (i.e., dyad trials).
+% Score only the presented trials, not the duplicated final row.
+trials = T(1:n_trials, :);
+is_target = trials.response_trial == 0;
+hits = sum(trials.response(is_target) == 1);
+false_alarms = sum(trials.response(~is_target) == 1);
+total_accuracy = mean(trials.response == is_target);
+s=sprintf('%g hits out of %g dyad events. %g false alarms out of %g crowd events. Overall accuracy is %0.2f.', hits, sum(is_target), false_alarms, sum(~is_target), total_accuracy);
+fprintf('\n\n\n%s\n',WrapString(s));
+s=sprintf('Expected length was %g s. Actual length was %g s.', expected_duration_s, actual_duration);
+fprintf('\n%s\n\n ', WrapString(s));
+
+
+function [response, T] = check_keys(response, T, itrial, keysToAccept, escapeKey, experiment_start)
+% Stops the run if Esc is down; otherwise records the first response of a trial.
+[~, secs, keyCode] = KbCheck();
+if keyCode(escapeKey)
+    error('dyads:escape', 'Run stopped with Esc.');
+end
+if ~response && any(keyCode(keysToAccept))
+    response = 1;
+    T.response(itrial) = 1;
+    T.response_time(itrial) = secs - experiment_start;
 end

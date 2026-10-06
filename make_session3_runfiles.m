@@ -1,8 +1,10 @@
 function result = make_session3_runfiles(subjName, varargin)
-% Makes new video run files for a returning participant (session 3).
+% Makes video run files that are decorrelated from what the participant
+% already saw. Used for a returning participant (session 3), and for a new
+% participant's first video runs once their sentence runs are done.
 %
 %   make_session3_runfiles(subjName)
-%   make_session3_runfiles(subjName, 'NRuns', 12, 'DryRun', true, ...)
+%   make_session3_runfiles(subjName, 'NRuns', 24, 'DryRun', true, ...)
 %
 % The new runs continue from the last completed video run, so
 % dyads_v_crowds(subjName, [], 'videos') picks up where the participant
@@ -21,7 +23,7 @@ function result = make_session3_runfiles(subjName, varargin)
 % the balance of each repeat.
 %
 % Options
-%   NRuns     : number of new video runs (default 12 = 4 repeats)
+%   NRuns     : number of new video runs (default 24 = 8 repeats)
 %   DataRoot  : folder containing sub-XX folders (default <repo>/data)
 %   WSent     : weight on decorrelation from sentence order (default 1)
 %   WVid      : weight on decorrelation from earlier video order (default 0.25)
@@ -34,7 +36,7 @@ function result = make_session3_runfiles(subjName, varargin)
 
 here = fileparts(mfilename('fullpath'));
 p = inputParser;
-addParameter(p, 'NRuns', 12);
+addParameter(p, 'NRuns', 24);
 addParameter(p, 'DataRoot', fullfile(here, 'data'));
 addParameter(p, 'WSent', 1);
 addParameter(p, 'WVid', 0.25);
@@ -83,7 +85,7 @@ end
 
 last = max([0, completed_runs(timingout, matout, 'videos')]);
 if last == 0
-    warning('sub-%02d has no completed video runs; new runs will start at 1.', subjName);
+    fprintf('sub-%02d has no completed video runs; new runs will start at 1.\n', subjName);
 end
 fprintf('sub-%02d: %d sentence runs and %d video runs completed (last video run %02d).\n', ...
     subjName, hist.sent.n_runs, hist.vid.n_runs, last);

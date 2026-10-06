@@ -1,10 +1,12 @@
-function write_event_files(subjName, run_number, data, task, session_number, bids_run_number)
+function write_event_files(subjName, run_number, data, task, session_number, bids_run_number, run_completed)
 % Makes the BIDS events + JSON files for a run.
 % Session (ses-XX) and BIDS run numbering come from session_info: each
 % unique date with a matfile (any task) is a session.
 %
 % dyads_v_crowds passes session_number / bids_run_number in. If they are
 % not passed, they are computed from the existing matfiles.
+% run_completed (default true): false for a run stopped early; the JSON
+% sidecar then notes that only the presented trials are listed.
 %
 % %%Written by EG McMahon
 %
@@ -14,6 +16,8 @@ if nargin < 1
     data=readtable('/Users/emaliem/Dropbox/mit_projects/verbal_com/video_sentence_fMRI_tasks/dyads_vs_crowds_task_fMRI/data/sub-77/timingfiles/task-sentences_run-01_20250919T153436.csv');
     task='sentence'; 
 end
+
+if nargin < 7 || isempty(run_completed); run_completed = true; end
 
 %% Paths
 topout = fullfile('data', ['sub-',sprintf('%02d', subjName)]);
@@ -107,6 +111,11 @@ j.condition.Levels.communication = 'Videos/Sentences of two people communicating
 j.condition.Levels.independent  = 'Videos/Sentences of two people performing common actions independent of one another.';
 j.condition.Levels.joint = 'Videos/Sentences of two people performing social but non-communicative interactions (e.g., dancing, boxing).';
 j.condition.Levels.object = 'Videos/Sentences of dynamic objects.';
+
+% Runs stopped early (Esc or error)
+if ~run_completed
+    j.RunIncomplete = 'The run was stopped before the end. Only the trials that were presented are listed.';
+end
 
 % Stimulus presentation metadata
 if ispc
