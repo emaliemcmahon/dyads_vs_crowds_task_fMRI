@@ -1,6 +1,6 @@
 function dyads_v_crowds(subjName, run_number, task)
 % Edited by Emalie McMahon June 20, 2025
-% Updated: Session/BIDS run handling moved to write_event_files (post-save, per-task)
+% Updated: session, task run and BIDS run come from session_info and are passed to write_event_files
 %
 %% Experiment setup
 if nargin < 1
@@ -27,31 +27,35 @@ if ~exist(timingout, 'dir'); mkdir(timingout); end
 if ~exist(edffiles, 'dir'); mkdir(edffiles); end
 
 
-% Check that run files exist
-if ~exist(topout, 'dir')
-    s=sprintf('Run files do not exist of subject %g. Make run files before continuing.', subjName);
-    ME = MException('MyComponent:noSuchVariable', s);
-    throw(ME);
+% Make run files if they do not exist yet for this task
+if isempty(dir(fullfile(runfiles, [task, '-*.csv'])))
+    fprintf('No %s run files for subject %g. Generating them now.\n', task, subjName);
+    assign_conditions(subjName, task, 'OutRoot', fullfile(curr, 'data'));
 end
 
 
+% Session = number of unique dates with data (today included), task run =
+% last saved run of this task + 1, BIDS run = runs of this task today.
+sinfo = session_info(topout, task);
+session_number = sinfo.session;
+bids_run_number = sinfo.bids_run;
 if isempty(run_number)
-    % If the run_number is not assigned, find the last run and increment by 1.
-    files = dir(fullfile(timingout, [task, '*.csv']));
-    if ~isempty(files)
-        runs = [];
-        for i=1:length(files)
-            f = strsplit(files(i).name, '_');
-            f = strsplit(f{1},'-');
-            runs(i) = str2double(f{end});
-        end
-        run_number = max(runs) + 1;
-    else
-        run_number = 1;
-    end
+    run_number = sinfo.run;
 end
 
-s=sprintf('Subject number is %g. Run number is %g. ', subjName, run_number);
+ftoread = fullfile(runfiles,[task, '-',sprintf('%02d', run_number),'.csv']);
+if ~exist(ftoread, 'file')
+    error(['No run file %s. All prepared %s runs may be done; for a returning ', ...
+        'participant make more with make_session3_runfiles(%g).'], ftoread, task, subjName);
+end
+if strcmp(task, 'videos') && session_number >= 3 && ...
+        isempty(dir(fullfile(runfiles, 'session3_qa_*.json')))
+    warning(['Session %g but make_session3_runfiles has not been run for subject %g. ', ...
+        'These run files were not decorrelated from the sentence order.'], session_number, subjName);
+end
+
+s=sprintf('Subject number is %g. Session is %g. Run number is %g (BIDS run %g today). ', ...
+    subjName, session_number, run_number, bids_run_number);
 fprintf('\n%s\n\n ',WrapString(s));
 
 %% Experiment variables
@@ -92,7 +96,6 @@ triggerKey = {'+'};                                    % The value of the key th
 keysToAccept = KbName({'1','1!','2','2@','3','3#','B'}); % Which KbCheck keys to accept as a behavioral response
 
 %% load video list
-ftoread = fullfile(runfiles,[task, '-',sprintf('%02d', run_number),'.csv']);
 T = readtable(ftoread);
 n_trials = height(T);
 
@@ -120,8 +123,6 @@ for itrial = 1:n_trials
         T.movie_path{itrial} = fullfile(curr, 'crowd_videos', video_name);
     end
 end
-n_response = sum(T.response_trial == 1);
-n_real = height(T) - n_response;
 
 n_video = 0;
 n_sentence = 0;
@@ -428,7 +429,7 @@ try
     Screen('CloseAll');
 
     % Session + BIDS run handled (and printed) inside write_event_files:
-    write_event_files(subjName, run_number, T(1:end-1, :), task);
+    write_event_files(subjName, run_number, T(1:end-1, :), task, session_number, bids_run_number);
 
     %% save eyelink and close (per-run EDF handling; keep link alive for next run)
     if with_Eyelink
@@ -458,10 +459,14 @@ try
 
 
     %% Print participant performance
-    false_alarms = sum(T.response(T.response_trial == 0) == 1);
-    hits = sum(T.response(T.response_trial == 1) == 1);
-    total_accuracy = mean(T.response_trial == T.response);
-    s=sprintf('%g hits out of %g crowd events. %g false alarms out of %g dyad events. Overall accuracy is %0.2f.', hits, n_response, false_alarms, n_real, total_accuracy);
+    % Participants press when the stimulus is NOT a crowd (i.e., dyad trials).
+    % Score only the presented trials, not the duplicated final row.
+    trials = T(1:n_trials, :);
+    is_target = trials.response_trial == 0;
+    hits = sum(trials.response(is_target) == 1);
+    false_alarms = sum(trials.response(~is_target) == 1);
+    total_accuracy = mean(trials.response == is_target);
+    s=sprintf('%g hits out of %g dyad events. %g false alarms out of %g crowd events. Overall accuracy is %0.2f.', hits, sum(is_target), false_alarms, sum(~is_target), total_accuracy);
     fprintf('\n\n\n%s\n',WrapString(s));
     s=sprintf('Expected length was %g s. Actual length was %g s.', expected_duration_s, actual_duration);
     fprintf('\n%s\n\n ', WrapString(s));
@@ -473,7 +478,7 @@ catch e %#ok<NASGU>
     ShowCursor;
     Screen('CloseAll');
     % Even on error, write events + print session/run info:
-    write_event_files(subjName, run_number, T(1:end-1, :), task);
+    write_event_files(subjName, run_number, T(1:end-1, :), task, session_number, bids_run_number);
 
     if with_Eyelink
         try Eyelink('StopRecording'); catch e2; fprintf(e2); end
