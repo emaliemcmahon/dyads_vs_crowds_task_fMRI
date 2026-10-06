@@ -1,9 +1,10 @@
 function write_event_files(subjName, run_number, data, task, session_number, bids_run_number)
 % Makes the BIDS events + JSON files for a run.
-% Session (ses-XX) and BIDS run numbering are computed per-task from MAT files.
+% Session (ses-XX) and BIDS run numbering are computed from MAT files.
+% Sessions increment with each new date across ALL tasks for a subject.
 %
 % If session_number / bids_run_number are passed, they are used; otherwise
-% they are computed from existing matfiles for the given task (recommended).
+% they are computed from existing matfiles (recommended).
 %
 % %%Written by EG McMahon
 %
@@ -23,30 +24,36 @@ timingout = fullfile(topout, 'timingfiles');
 curr_date = datestr(datetime('now'), 'yyyymmddTHHMMSS');
 today_ymd = curr_date(1:8);  % 'YYYYMMDD'
 
-% Only consider this TASK's matfiles for this subject
+% Check ALL tasks' matfiles for this subject to determine session number
 if nargin < 5 || isempty(session_number) || nargin < 6 || isempty(bids_run_number)
-    mats = dir(fullfile(matout, sprintf('task-%s_run-*_*.mat', task)));
-    if isempty(mats)
+    % Get all matfiles for this subject across all tasks
+    all_mats = dir(fullfile(matout, 'task-*_run-*_*.mat'));
+    
+    if isempty(all_mats)
         computed_session = 1;
         computed_bidsrun = 1;
     else
-        % Extract dates from filenames: ..._YYYYMMDDTHHMMSS.mat
-        tok = regexp({mats.name}, '_(\d{8})T\d{6}\.mat$', 'tokens', 'once');
-        tok = tok(~cellfun('isempty', tok));
-        all_dates = cellfun(@(t)t{1}, tok, 'uni', false);  % e.g., {'20250919','20250924',...}
+        % Extract dates from ALL matfiles: ..._YYYYMMDDTHHMMSS.mat
+        tok_all = regexp({all_mats.name}, '_(\d{8})T\d{6}\.mat$', 'tokens', 'once');
+        tok_all = tok_all(~cellfun('isempty', tok_all));
+        all_dates_all_tasks = cellfun(@(t)t{1}, tok_all, 'uni', false);  % e.g., {'20250919','20250924',...}
 
-        % Sessions are unique dates per task, sorted ascending
-        unique_dates = sort(unique(all_dates));
+        % Sessions are unique dates across ALL tasks, sorted ascending
+        unique_dates = sort(unique(all_dates_all_tasks));
         idx_today = find(strcmp(unique_dates, today_ymd), 1);
 
         if isempty(idx_today)
-            % If run just crashed before saving MAT (rare), treat as next session
+            % New date = new session
             computed_session = numel(unique_dates) + 1;
             computed_bidsrun = 1;
         else
             computed_session = idx_today;
-            % BIDS run = number of MATs *today* for this task (includes current one)
-            computed_bidsrun = sum(strcmp(all_dates, today_ymd));
+            % BIDS run = number of MATs *today* for THIS TASK only (includes current one)
+            task_mats = dir(fullfile(matout, sprintf('task-%s_run-*_*.mat', task)));
+            tok_task = regexp({task_mats.name}, '_(\d{8})T\d{6}\.mat$', 'tokens', 'once');
+            tok_task = tok_task(~cellfun('isempty', tok_task));
+            task_dates = cellfun(@(t)t{1}, tok_task, 'uni', false);
+            computed_bidsrun = sum(strcmp(task_dates, today_ymd));
             if computed_bidsrun < 1
                 computed_bidsrun = 1;
             end

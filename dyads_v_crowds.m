@@ -1,17 +1,17 @@
 function dyads_v_crowds(subjName, run_number, task)
 % Edited by Emalie McMahon June 20, 2025
 % Updated: Session/BIDS run handling moved to write_event_files (post-save, per-task)
-
+%
 %% Experiment setup
 if nargin < 1
     subjName = 77;
     run_number = [];
-    task = 'sentences';
+    task = 'videos';
     debug = 1;
-    with_Eyelink = 1;
+    with_Eyelink = 0;
 else
     debug = 0;
-    with_Eyelink = 1;
+    with_Eyelink = 0;
 end
 
 % make output directories
@@ -181,9 +181,9 @@ Priority(priorityLevel);
 
 % Task instructions and start with the trigger
 if strcmp(task, 'videos')
-    text = 'Hit the button if the video depicts the actions of many people.';
+    text = 'Hit the button if the video does not depict the actions of many people.';
 else
-    text='Hit the button if the sentence describes the actions of many people.';
+    text='Hit the button if the sentence does not describe the actions of many people.';
 end
 DrawFormattedText2(text,'win', win, 'sx','center','sy','center', ...
     'xalign','center','yalign', 'center', ...
@@ -297,6 +297,10 @@ try
             end
         end
     end
+
+   if debug
+       n_trials=2; 
+   end 
 
     for itrial = 1:n_trials
         still_loading = 1;
