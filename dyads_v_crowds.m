@@ -6,6 +6,9 @@ function dyads_v_crowds(subjName, run_number, task)
 %   dyads_v_crowds(subjName, run_number, task)    % force run and task
 %   dyads_v_crowds(subjName, [], task)            % force the task only
 %
+% subjName and run_number can be numbers or text: 7, '07', "7" and
+% 'sub-07' all mean subject 7 and load the same data/sub-07 run files.
+%
 % You only need to pass the subject number. Everything else is worked out
 % from the subject's saved data:
 %   task       : 'sentences' until 8 sentence runs have been finished,
@@ -26,6 +29,7 @@ function dyads_v_crowds(subjName, run_number, task)
 % Edited by Emalie McMahon June 20, 2025
 % Update by EM October 6, 2026
 % Updated: session, task run and BIDS run come from session_info and are passed to write_event_files
+% Updated: subjName and run_number accept numbers or strings
 %
 %% Experiment setup
 n_sentence_runs = 8;   % sentence runs each participant completes
@@ -41,6 +45,12 @@ else
     debug = 0;
     with_Eyelink = 0;
 end
+
+% Subject and run may be given as numbers or text (7, '07', "7", 'sub-07');
+% everything below uses the number so the sub-XX folder is always the same
+subjName = to_number(subjName, 'subjName');
+if ~isempty(run_number); run_number = to_number(run_number, 'run_number'); end
+task = char(task);
 
 % make output directories
 curr = pwd;
@@ -541,6 +551,18 @@ s=sprintf('%g hits out of %g dyad events. %g false alarms out of %g crowd events
 fprintf('\n\n\n%s\n',WrapString(s));
 s=sprintf('Expected length was %g s. Actual length was %g s.', expected_duration_s, actual_duration);
 fprintf('\n%s\n\n ', WrapString(s));
+
+
+function n = to_number(x, name)
+% Converts 7, '07', "7" or 'sub-07' to the whole number 7.
+if isstring(x) || ischar(x)
+    n = str2double(regexprep(strtrim(char(x)), '^sub-?', '', 'ignorecase'));
+else
+    n = double(x);
+end
+if ~isscalar(n) || isnan(n) || n < 0 || n ~= round(n)
+    error('%s must be a whole number (e.g. 7 or ''07''), not "%s".', name, strjoin(string(x)));
+end
 
 
 function [response, T] = check_keys(response, T, itrial, keysToAccept, escapeKey, experiment_start)
